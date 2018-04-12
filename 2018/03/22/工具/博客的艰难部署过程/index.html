@@ -233,13 +233,13 @@
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br><span class="line">或者</span><br><span class="line">$ hexo s</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<center><br><img src="/2018/03/22/博客的艰难部署过程/预览效果图.jpg"><br>图1、博客的艰难部署过程/预览效果图<br></center>
+<center><br><img src="/2018/03/22/工具/博客的艰难部署过程/预览效果图.jpg"><br>图1、博客的艰难部署过程/预览效果图<br></center>
 
 <h3 id="6-关联-Hexo-与-GitHub-Pages"><a href="#6-关联-Hexo-与-GitHub-Pages" class="headerlink" title="6. 关联 Hexo 与 GitHub Pages"></a>6. 关联 Hexo 与 GitHub Pages</h3><p>经过上一章节的操作，已经能够在本地写文章并且预览，现在就是要关联之前创建的GitHub Pages仓库，这样我就可以通过username.github.io 域名去访问。</p>
 <h4 id="6-1-生成SSH-Keys"><a href="#6-1-生成SSH-Keys" class="headerlink" title="6.1 生成SSH Keys"></a>6.1 生成SSH Keys</h4><p>输入一下命令，自己的邮箱地址<code>&quot;xxxxxxxxxx@mail.com&quot;</code>，<code>ssh-keygen -t rsa</code>表示我们指定 RSA 算法生成密钥。</p>
 <p><code>$ ssh-keygen -t rsa -C &quot;xxxxxxxxxx@mail.com&quot;</code></p>
 <p>执行后会要求输入密码，密码的话需要6位数以上，没有什么具体要求，不输入则是不需要密码。之后就就会生成两个文件，分别为<code>id_rsa</code>和<code>id_rsa.pub</code>，即密钥<code>id_rsa</code>和公钥<code>id_rsa.pub</code>。</p>
-<h4 id="6-2-添加-SSH-Key-到-GitHub"><a href="#6-2-添加-SSH-Key-到-GitHub" class="headerlink" title="6.2 添加 SSH Key 到 GitHub"></a>6.2 添加 SSH Key 到 GitHub</h4><center><br><img src="/2018/03/22/博客的艰难部署过程/添加SSH Key.png"><br>图2、添加SSH Key<br></center>
+<h4 id="6-2-添加-SSH-Key-到-GitHub"><a href="#6-2-添加-SSH-Key-到-GitHub" class="headerlink" title="6.2 添加 SSH Key 到 GitHub"></a>6.2 添加 SSH Key 到 GitHub</h4><center><br><img src="/2018/03/22/工具/博客的艰难部署过程/添加SSH Key.png"><br>图2、添加SSH Key<br></center>
 
 <p>首先要在个人GitHub的<code>setting-&gt;SSH and GPG Keys</code>(<a href="https://github.com/settings/ssh" target="_blank" rel="noopener">https://github.com/settings/ssh</a>)中<code>New SSH Key</code>，在macOS中找到<code>~/.ssh/id_rsa.pub</code>，将<code>id_rsa.pub</code>中的内容复制到新建<code>SSH Key</code>的<code>Key</code>框中，点击<code>ADD SSH Key</code>即可。</p>
 <h4 id="6-3-测试"><a href="#6-3-测试" class="headerlink" title="6.3 测试"></a>6.3 测试</h4><p>执行以下命令查看是添加成功：</p>
@@ -303,7 +303,7 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2018/03/26/iOS知识梳理/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
+        <a href="/2018/03/26/iOS/iOS知识梳理/" class="pre-post btn btn-default"><i class="fa fa-angle-left fa-fw"></i>上一篇</a>
     
     
 </div>
@@ -368,7 +368,7 @@
         
     <div class="widget">
         <h3 class="title">分类</h3>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/"><i class="fa" aria-hidden="true">iOS</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">1</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/"><i class="fa" aria-hidden="true">iOS</i></a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">1</span></li></ul>
     </div>
 
 
@@ -376,7 +376,7 @@
         
     <div class="widget">
       <h3 class="title">归档</h3>
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/"><i class="fa" aria-hidden="true">四月 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/"><i class="fa" aria-hidden="true">三月 2018</i></a><span class="archive-list-count">2</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/"><i class="fa" aria-hidden="true">四月 2018</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/"><i class="fa" aria-hidden="true">三月 2018</i></a><span class="archive-list-count">2</span></li></ul>
     </div>
 
 
@@ -385,7 +385,7 @@
   <div class="widget">
     <h3 class="title">标签云</h3>
     <div class="content tag-cloud">
-        <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/macOS/" style="font-size: 10px;">macOS</a> <a href="/tags/音视频/" style="font-size: 10px;">音视频</a>
+        <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/iOS/" style="font-size: 20px;">iOS</a> <a href="/tags/macOS/" style="font-size: 10px;">macOS</a> <a href="/tags/视音频/" style="font-size: 15px;">视音频</a>
     </div>
   </div>
 
