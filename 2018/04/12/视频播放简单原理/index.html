@@ -1,0 +1,591 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Z&#39;s blog">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="https://zealforbeing.github.io">
+    <!--SEO-->
+
+
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>视频播放简单原理 | Z&#39;s blog</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Z&#39;s blog" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+    <link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="">
+            <img src="/img/avatar.jpg" alt="logo头像">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 最可怕一生碌碌无为，还说平凡难能可贵！ </h2>
+             
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation"><a href="/"><i class="fa fa-fw "></i>主页</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/archives/"><i class="fa fa-fw "></i>归档</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/iOS/"><i class="fa fa-fw "></i>iOS</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/工具/"><i class="fa fa-fw "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/about/"><i class="fa fa-fw "></i>关于</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="视频播放简单原理">
+            
+	            视频播放简单原理
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/iOS">
+            iOS
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a href="/tags/音视频">
+               音视频
+            </a>
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2018/04/12</span>
+    </span>
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <!-- TOC -->
+<ul>
+<li><a href="#前言">前言</a></li>
+<li><a href="#视频播放基本流程">视频播放基本流程</a></li>
+<li><a href="#基本概念">基本概念</a></li>
+<li><a href="#常用流媒体协议">常用流媒体协议</a></li>
+<li><a href="#常用封装">常用封装</a></li>
+<li><a href="#视频编码">视频编码</a></li>
+<li><a href="#音频编码">音频编码</a></li>
+<li><a href="#音画同步">音画同步</a></li>
+<li><a href="#后话">后话</a></li>
+<li><a href="#参考">参考</a></li>
+</ul>
+<!-- /TOC -->
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前段时间做了一个直播模块，没有意外都是用第三方服务实现的，基本都是业务的东西，有时间就开始研究下相关的技术，不能一直做黑盒程序猿啊。<br>这篇文章主要是记录视频播放的简单原理，很多内容都是摘录自雷神等人的博客，希望不会被怪罪。想要深入研究很推荐去雷神的专栏看一下(<a href="https://blog.csdn.net/leixiaohua1020" target="_blank" rel="noopener">https://blog.csdn.net/leixiaohua1020</a>)，在此缅怀这位无私智者。</p>
+<h2 id="视频播放基本流程"><a href="#视频播放基本流程" class="headerlink" title="视频播放基本流程"></a>视频播放基本流程</h2><center><br><br><img src="/2018/04/12/视频播放简单原理/视频播放流程.jpeg"><br><br><br>图1、视频播放流程图<br><br></center>
+
+<ol>
+<li>解协议：将流媒体协议的数据，解析为标准的相应的封装格式数据，常用协议：HTTP、RTMP、MMS等；</li>
+<li>解封装：将输入的封装格式的数据，分离成为音频流压缩编码数据和视频流压缩编码数据，常见视频格式：MP4、MKV、FLV、RMVB等</li>
+<li>解码（视、音频解码）：将视频/音频压缩编码数据，解码成为非压缩的视频/音频原始数据，常见解码：视频编码H264-&gt;像素数据YUV/RGB、音频编码AAC-&gt;采样数据PCM</li>
+<li>音画同步：根据解封装模块处理过程中获取到的参数信息，同步解码出来的视频和音频数据，并将视频音频数据送至系统的显卡和声卡播放出来，以FFmpeg库为例，利用时间戳去同步二者：PTS（Presentation Time Stamp 显示时间戳）、DTS（Decoding Time Stamp 解码时间戳）；</li>
+<li>终端设备播放：显卡、声卡对视音频的输出。</li>
+</ol>
+<h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
+<li>分辨率：指每一帧画面的大小,宽乘高等于若干像素。目前主流的高清格式通常为：720p（1280×720）、1080p（1920×1080）、2K（2560x1440）、4K（4096×2160）</li>
+<li>码率（比特率，bit per second / bps / bit rate）：指单位时间传输的或解码的位数。码率越大，说明单位时间内取样率越大，数据流精度就越高，这样表现出来的的效果就是：视频画面更清晰画质更高。</li>
+<li>帧率（frames per seconds / fps）：指播放时每秒移动多少帧。通常说一个视频的25帧，指的就是这个视频帧率，即1秒中会显示25帧；视频帧率影响的是画面流畅感，也就是说视频帧率超高，表现出来的效果就是：画面越显得流畅。一般NTSC①是30,PAL②是25，帧速太低则画面不连续播放的流畅性就差，所以要恰到好处才行。 </li>
+<li>采样率（sample rate）：指每秒采集的次数，这个是指音频的，采的越多，声音质量越好，当然体积也会大。</li>
+</ol>
+<blockquote>
+<p>码率影响体积，与体积成正比；码率越大，体积越大；码率越小，体积越小。<br>帧率影响画面流畅度，与画面流畅度成正比：帧率越大，画面越流畅；帧率越小，画面越有跳动感。如果码率为变量，则帧率也会影响体积，帧率越高，每秒钟经过的画面越多，需要的码率也越高，体积也越大。<br>分辨率影响图像大小，与图像大小成正比：分辨率越高，图像越大；分辨率越低，图像越小。</p>
+</blockquote>
+<h2 id="常用流媒体协议"><a href="#常用流媒体协议" class="headerlink" title="常用流媒体协议"></a>常用流媒体协议</h2><p>不管是观看视频还是直播，大多数都需要通过网络传播，服务器与客户端都需要遵循一定的协议才能实现数据的传输与解析。目前已经有很多流媒体协议（如表1所示），各有优劣，将来还会有更多的机构制定、推出不同的协议，以解决现有的问题。<br>基于TCP的协议传输可靠，但是会有抖动、延迟等问题。基于UDP的协议虽然抖动和延迟情况会好些，但是不够可靠存在丢包的情况。所以不能说哪个协议最好，只能根据自身业务需求选择一种适合的协议，亦或是自行制定协议，在封装可靠的UDP连接等。</p>
+<center><br>表1、常见流媒体协议<br></center>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">推出机构</th>
+<th style="text-align:center">传输层协议</th>
+<th style="text-align:center">客户端</th>
+<th style="text-align:center">目前使用领域</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">RTSP+RTP</td>
+<td style="text-align:center">IETF</td>
+<td style="text-align:center">TCP+UDP</td>
+<td style="text-align:center">VLC, WMP</td>
+<td style="text-align:center">IPTV</td>
+</tr>
+<tr>
+<td style="text-align:center">RTMP</td>
+<td style="text-align:center">Adobe Inc.</td>
+<td style="text-align:center">TCP</td>
+<td style="text-align:center">Flash</td>
+<td style="text-align:center">互联网直播</td>
+</tr>
+<tr>
+<td style="text-align:center">RTMFP</td>
+<td style="text-align:center">Adobe Inc.</td>
+<td style="text-align:center">UDP</td>
+<td style="text-align:center">Flash</td>
+<td style="text-align:center">互联网直播</td>
+</tr>
+<tr>
+<td style="text-align:center">MMS</td>
+<td style="text-align:center">Microsoft Inc.</td>
+<td style="text-align:center">TCP/UDP</td>
+<td style="text-align:center">WMP</td>
+<td style="text-align:center">互联网直播+点播</td>
+</tr>
+<tr>
+<td style="text-align:center">HTTP</td>
+<td style="text-align:center">WWW+IETF</td>
+<td style="text-align:center">TCP</td>
+<td style="text-align:center">Flash</td>
+<td style="text-align:center">互联网点播</td>
+</tr>
+<tr>
+<td style="text-align:center">HLS</td>
+<td style="text-align:center">Apple Inc.</td>
+<td style="text-align:center">TCP</td>
+<td style="text-align:center">iOS, macOS</td>
+<td style="text-align:center">互联网直播+点播</td>
+</tr>
+</tbody>
+</table>
+<h2 id="常用封装"><a href="#常用封装" class="headerlink" title="常用封装"></a>常用封装</h2><p>一般我们所说的视频包括画面和声音，二者分开的话顶多算是图片和音频，封装便是把画面和声音打包到一起组成视频文件，解封装便是打包的逆过程，将画面和声音分开，播放是交给不同的设备输出。视频封装同样有很多格式，平时都是以文件后缀就可以区分，如常见的：<code>.mp4</code>、<code>.flv</code>、<code>.rmvb</code>等等。支持不同的音视频编码决定其最终的画质和音质；支持流媒体协议与否，决定其能不能以流媒体形式传输。</p>
+<center><br>表2、常见视频封装格式<br></center>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">推出机构</th>
+<th style="text-align:center">流媒体</th>
+<th style="text-align:center">支持的视频编码</th>
+<th style="text-align:center">支持的音频编码</th>
+<th style="text-align:center">目前使用领域</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">AVI</td>
+<td style="text-align:center">Microsoft Inc.</td>
+<td style="text-align:center">不支持</td>
+<td style="text-align:center">几乎所有格式</td>
+<td style="text-align:center">几乎所有格式</td>
+<td style="text-align:center">BT下载影视</td>
+</tr>
+<tr>
+<td style="text-align:center">MP4</td>
+<td style="text-align:center">MPEG</td>
+<td style="text-align:center">支持</td>
+<td style="text-align:center">MPEG-2, MPEG-4, H.264, H.263等</td>
+<td style="text-align:center">AAC, MPEG-1 Layers I, II, III, AC-3等</td>
+<td style="text-align:center">互联网视频网站</td>
+</tr>
+<tr>
+<td style="text-align:center">TS</td>
+<td style="text-align:center">MPEG</td>
+<td style="text-align:center">支持</td>
+<td style="text-align:center">MPEG-1, MPEG-2, MPEG-4, H.264</td>
+<td style="text-align:center">MPEG-1 Layers I, II, III, AAC,</td>
+<td style="text-align:center">IPTV，数字电视</td>
+</tr>
+<tr>
+<td style="text-align:center">FLV</td>
+<td style="text-align:center">Adobe Inc.</td>
+<td style="text-align:center">支持</td>
+<td style="text-align:center">Sorenson, VP6, H.264</td>
+<td style="text-align:center">MP3, ADPCM, Linear PCM, AAC等</td>
+<td style="text-align:center">互联网视频网站</td>
+</tr>
+<tr>
+<td style="text-align:center">MKV</td>
+<td style="text-align:center">CoreCodec Inc.</td>
+<td style="text-align:center">支持</td>
+<td style="text-align:center">几乎所有格式</td>
+<td style="text-align:center">几乎所有格式</td>
+<td style="text-align:center">互联网视频网站</td>
+</tr>
+<tr>
+<td style="text-align:center">RMVB</td>
+<td style="text-align:center">Real Networks Inc.</td>
+<td style="text-align:center">支持</td>
+<td style="text-align:center">RealVideo 8, 9, 10</td>
+<td style="text-align:center">AAC, Cook Codec, RealAudio Lossless</td>
+<td style="text-align:center">BT下载影视</td>
+</tr>
+</tbody>
+</table>
+<h2 id="视频编码"><a href="#视频编码" class="headerlink" title="视频编码"></a>视频编码</h2><p>如果视频中每一帧的画面都是原图片的话，最后生成的视频将是巨大的。在一些视频中往往会有一段时间，画面的大部分内容都是相同的，这个时候就可以进行前后画面的对比，进行一定的压缩操作以达到节省空间的作用，这种压缩操作就是<strong>视频编码</strong>。不同的压缩算法，就产生了不同的编码格式，应用的比较广泛的就是H.264了，接下来也会深入的去学习一下。</p>
+<center><br>表3、常见视频编码<br></center>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">推出机构</th>
+<th style="text-align:center">推出时间</th>
+<th style="text-align:center">目前使用领域</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">HEVC(H.265)</td>
+<td style="text-align:center">MPEG/ITU-T</td>
+<td style="text-align:center">2013</td>
+<td style="text-align:center">研发中</td>
+</tr>
+<tr>
+<td style="text-align:center">H.264</td>
+<td style="text-align:center">MPEG/ITU-T</td>
+<td style="text-align:center">2003</td>
+<td style="text-align:center">各个领域</td>
+</tr>
+<tr>
+<td style="text-align:center">MPEG4</td>
+<td style="text-align:center">MPEG</td>
+<td style="text-align:center">2001</td>
+<td style="text-align:center">不温不火</td>
+</tr>
+<tr>
+<td style="text-align:center">MPEG2</td>
+<td style="text-align:center">MPEG</td>
+<td style="text-align:center">1994</td>
+<td style="text-align:center">数字电视</td>
+</tr>
+<tr>
+<td style="text-align:center">VP9</td>
+<td style="text-align:center">Google</td>
+<td style="text-align:center">2013</td>
+<td style="text-align:center">研发中</td>
+</tr>
+<tr>
+<td style="text-align:center">VP8</td>
+<td style="text-align:center">Google</td>
+<td style="text-align:center">2008</td>
+<td style="text-align:center">不普及</td>
+</tr>
+<tr>
+<td style="text-align:center">VC-1</td>
+<td style="text-align:center">Microsoft Inc.</td>
+<td style="text-align:center">2006</td>
+<td style="text-align:center">微软平台</td>
+</tr>
+</tbody>
+</table>
+<h2 id="音频编码"><a href="#音频编码" class="headerlink" title="音频编码"></a>音频编码</h2><p>音频编码和视频编码的道理一个样，对原始音频数据的压缩，为的也是节省空间，AAC和MP3应用广泛。</p>
+<center><br>表4、常见音频编码<br></center>
+
+<table>
+<thead>
+<tr>
+<th style="text-align:center">名称</th>
+<th style="text-align:center">推出机构</th>
+<th style="text-align:center">推出时间</th>
+<th style="text-align:center">目前使用领域</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">AAC</td>
+<td style="text-align:center">MPEG</td>
+<td style="text-align:center">1997</td>
+<td style="text-align:center">各个领域（新）</td>
+</tr>
+<tr>
+<td style="text-align:center">AC-3</td>
+<td style="text-align:center">Dolby Inc.</td>
+<td style="text-align:center">1992</td>
+<td style="text-align:center">电影</td>
+</tr>
+<tr>
+<td style="text-align:center">MP3</td>
+<td style="text-align:center">MPEG</td>
+<td style="text-align:center">1993</td>
+<td style="text-align:center">各个领域（旧）</td>
+</tr>
+<tr>
+<td style="text-align:center">WMA</td>
+<td style="text-align:center">Microsoft Inc.</td>
+<td style="text-align:center">1999</td>
+<td style="text-align:center">微软平台</td>
+</tr>
+</tbody>
+</table>
+<h2 id="音画同步"><a href="#音画同步" class="headerlink" title="音画同步"></a>音画同步</h2><p>音视频是不同设备去采集，音视频编码解码时间不一致，流媒体传输将音视频分开传输等等原因，不作处理，声音和画面播放往往是不同步的，直接播放肯定是没法看的。采集的时候需要给每个视频帧和音频样本加上时间戳，再通过一个基准将音画进行同步处理，解决方案有如下几种：</p>
+<ol>
+<li><strong>将视频同步到音频上</strong>，就是以音频的播放速度为基准来同步视频。视频比音频播放慢了，加快其播放速度；快了，则延迟播放。</li>
+<li><strong>将音频同步到视频上</strong>，就是以视频的播放速度为基准来同步音频。</li>
+<li><strong>将视频和音频同步外部的时钟上</strong>，选择一个外部时钟为基准，视频和音频的播放速度都以该时钟为标准。</li>
+</ol>
+<h2 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h2><p>经过一段时间的学习，反反复复看雷神的博客，写了些代码实践验证，音视频这个领域广度和深度是我无法想象的，还是要靠慢慢的积累。文中有什么错误和不足欢迎指正。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/leixiaohua1020/article/details/18893769" target="_blank" rel="noopener">《视音频编解码技术零基础学习方法》</a><br><a href="https://blog.csdn.net/weixin_35804181/article/details/54984316" target="_blank" rel="noopener">《FFMPEG编码：参数研究》</a><br><a href="https://www.cnblogs.com/wangguchangqing/p/5900426.html" target="_blank" rel="noopener">《FFmpeg学习6：视音频同步》</a></p>
+
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="zealforbeing.github.io" target="_blank">Z</a>
+            
+        </div>
+        <div>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2018/03/26/iOS知识梳理/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<script type="text/javascript" src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: "Thu Apr 12 2018 09:38:00 GMT+0800",
+        owner:"zealforbeing",
+        repo:"zealforbeing.github.io",
+        oauth: {
+          client_id:"2981e8a381b59e329bcb",
+          client_secret:"7f283c04d615c715490952b394ba7400fb91f88f"
+        },
+        perPage:"10",
+    });
+    gitment.render('comments');
+</script>
+
+    </div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/"><i class="fa" aria-hidden="true">iOS</i></a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">1</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/"><i class="fa" aria-hidden="true">四月 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/"><i class="fa" aria-hidden="true">三月 2018</i></a><span class="archive-list-count">2</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/macOS/" style="font-size: 10px;">macOS</a> <a href="/tags/音视频/" style="font-size: 10px;">音视频</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友链</h3>
+        <div class="content friends-link">
+        
+            <a href="https://zealforbeing.github.io" class="fa" target="_blank">个人博客</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>
