@@ -1,0 +1,32 @@
+<div id="main">
+  <div id="post-list">
+      <% if ( !page.year && !page.month ) {%>
+          <% var obj = _.groupBy(page.posts.toArray(), function(p){ return p.date.format('YYYY') })%>
+          <% _.each(obj, function(posts, year){ %>
+            <ul class="archives-post-list">
+                <h1 class="info"><%= year %>年</h1>
+                <% _.each(posts ,function(post) { %>
+                  <li class="post-items" _href="<%- url_for(post.path)%>">
+                    <h3 class="post-item-title">
+                      <%= post.date.format("YYYY.MM.DD") %> <a href="<%- url_for(post.path)%>"> <%= post.title%> </a>
+                    </h3>  
+                  </li>
+                <% }) %>
+            </ul>
+          <% }) %>
+      <% } else { %>
+        <ul class="archives-post-list">
+            <h1 class="info"><%= page.year %>年 <%= page.month %>月</h1>
+              <% page.posts.each(function(post){ %>
+                <li class="post-items" _href="<%- url_for(post.path)%>">
+                  <h3 class="post-item-title">
+                    <a href="<%- url_for(post.path)%>"> <%= post.title%> </a>
+                  </h3>  
+                </li>
+              <% }) %>
+        </ul>
+    <% } %>
+  </div>
+</div>
+<%- partial('_partial/pagination')%>
+
