@@ -241,7 +241,7 @@ pre {
   line-height: 0;
   height: 180px;
   width: 100%;
-  background: #fff url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner.jpg);
+  background: #393939 url(http://7xpw2b.com1.z0.glb.clouddn.com/hexo-sinppet/img/banner.jpg);
   background-repeat: repeat;
   background-attachment: fixed;
 }
@@ -677,7 +677,7 @@ pre {
   overflow: auto;
   line-height: 1.5;
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-  color: #808080;
+  color: #E1E1E1;
   background-color: #f9f9f9;
 }
 .post-content pre code {

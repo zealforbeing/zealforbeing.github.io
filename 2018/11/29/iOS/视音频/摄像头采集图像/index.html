@@ -1,0 +1,358 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="Z&#39;s blog">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="https://zealforbeing.github.io">
+    <!--SEO-->
+
+
+
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+
+<title>摄像头采集图像 | Z&#39;s blog</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="Z&#39;s blog" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+    <link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css?rev=3.3.4">
+<link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+</head>
+
+
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header"  >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="">
+            <img src="/img/avatar.jpg" alt="logo头像">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 最可怕一生碌碌无为，还说平凡难能可贵！ </h2>
+             
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="fa fa-bars"></i>
+                    </span>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation"><a href="/"><i class="fa fa-fw "></i>主页</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/archives/"><i class="fa fa-fw "></i>归档</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/iOS/"><i class="fa fa-fw "></i>iOS</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/categories/工具/"><i class="fa fa-fw "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation"><a href="/about/"><i class="fa fa-fw "></i>关于</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="摄像头采集图像">
+            
+	            摄像头采集图像
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/iOS">
+            iOS
+        </a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a href="/tags/视音频">
+               视音频
+            </a>
+            
+        </span>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">2018/11/29</span>
+    </span>
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="主要API"><a href="#主要API" class="headerlink" title="主要API"></a>主要API</h2><ul>
+<li>AVCaptureDevice //输入设备，摄像头或者麦克风</li>
+<li>AVCaptureInput  //用于配置输入端口</li>
+<li>AVCaptureOutput //用于管理输出视频或者静态图片</li>
+<li>AVCaptureSession    //用于协调从输入到输出的数据流</li>
+<li>AVCaptureVideoPreviewLayer //实时预览摄像头采集的图片数据</li>
+</ul>
+<h2 id="AVCaptureSession初始化-amp-设置分辨率"><a href="#AVCaptureSession初始化-amp-设置分辨率" class="headerlink" title="AVCaptureSession初始化 &amp; 设置分辨率"></a>AVCaptureSession初始化 &amp; 设置分辨率</h2><p><code>AVCaptureSession</code>的初始化仅仅是初始化一个实例对象，分辨率一般测试用直播使用<code>AVCaptureSessionPreset640x480</code>已经足够，后期可以根据需求设置</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化session</span></span><br><span class="line"><span class="keyword">self</span>.session = [[<span class="built_in">AVCaptureSession</span> alloc] init];</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置摄像头的分辨率640*480</span></span><br><span class="line"><span class="keyword">if</span> ([<span class="keyword">self</span>.session canSetSessionPreset:<span class="built_in">AVCaptureSessionPreset640x480</span>]) &#123;</span><br><span class="line">    <span class="keyword">self</span>.session.sessionPreset = <span class="built_in">AVCaptureSessionPreset640x480</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>AVCaptureSessionPresetHigh //Highest recording quality. This varies per device.</li>
+<li>AVCaptureSessionPresetMedium //Suitable for Wi-Fi sharing. The actual values may change.</li>
+<li>AVCaptureSessionPresetLow   //Suitable for 3G sharing. The actual values may change.</li>
+<li>AVCaptureSessionPreset640x480   //VGA.</li>
+<li>AVCaptureSessionPreset1280x720  //720p HD.</li>
+<li>AVCaptureSessionPresetPhoto //Full photo resolution. This is not supported for video output.</li>
+</ul>
+<h2 id="AVCaptureDevice初始化-amp-自动变焦"><a href="#AVCaptureDevice初始化-amp-自动变焦" class="headerlink" title="AVCaptureDevice初始化 &amp; 自动变焦"></a>AVCaptureDevice初始化 &amp; 自动变焦</h2><p>使用默认方式获取到的摄像头是后置，如果需要获取前置要遍历所有摄像头设备，找到<code>[device position] == AVCaptureDevicePositionFront</code>。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//默认获取后置摄像头</span></span><br><span class="line"><span class="keyword">self</span>.videoDevice = [<span class="built_in">AVCaptureDevice</span> defaultDeviceWithMediaType:<span class="built_in">AVMediaTypeVideo</span>];</span><br><span class="line"></span><br><span class="line">or </span><br><span class="line"></span><br><span class="line"><span class="comment">//遍历所有视频采集设备</span></span><br><span class="line"><span class="built_in">NSArray</span> *devices = [<span class="built_in">AVCaptureDevice</span> devicesWithMediaType:<span class="built_in">AVMediaTypeVideo</span>];</span><br><span class="line"><span class="keyword">for</span> (<span class="built_in">AVCaptureDevice</span> *device <span class="keyword">in</span> devices) &#123;</span><br><span class="line">    <span class="comment">//找到前置摄像头</span></span><br><span class="line">    <span class="keyword">if</span> ([device position] == <span class="built_in">AVCaptureDevicePositionFront</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.videoDevice = device;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>拍摄动态视频都是要自动变焦的，我们用到支持自动变焦<code>AVCaptureFocusModeContinuousAutoFocus</code></p>
+<p>注意：要在设备上设置捕获属性，必须首先使用<code>lockForConfiguration:</code>获取设备上的锁。这避免了做出可能与其他应用程序中的设置不兼容的更改。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//自动变焦</span></span><br><span class="line"><span class="keyword">if</span>([<span class="keyword">self</span>.videoDevice isFocusModeSupported:<span class="built_in">AVCaptureFocusModeContinuousAutoFocus</span>])&#123;</span><br><span class="line">    <span class="built_in">NSError</span> *error;</span><br><span class="line">    <span class="built_in">BOOL</span> isLooked = [<span class="keyword">self</span>.videoDevice lockForConfiguration:&amp;error];</span><br><span class="line">    <span class="keyword">if</span>(isLooked &amp;&amp; error == <span class="literal">nil</span>)&#123;</span><br><span class="line">        <span class="keyword">self</span>.videoDevice.focusMode = <span class="built_in">AVCaptureFocusModeContinuousAutoFocus</span>;</span><br><span class="line">        [<span class="keyword">self</span>.videoDevice unlockForConfiguration];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="设置帧率"><a href="#设置帧率" class="headerlink" title="设置帧率"></a>设置帧率</h2><p>帧率可以动态去设置，<code>self.videoDevice.activeFormat.videoSupportedFrameRateRanges</code>可以获取到摄像头帧率的支持范围，设置时同样需要对设备上锁。</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在设置帧率之前先获取帧率支持范围</span></span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"支持的帧速范围是: %@"</span>,[<span class="keyword">self</span>.videoDevice.activeFormat.videoSupportedFrameRateRanges objectAtIndex:<span class="number">0</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置帧速</span></span><br><span class="line"><span class="built_in">NSError</span> *error;</span><br><span class="line"><span class="built_in">BOOL</span> isLocked = [<span class="keyword">self</span>.videoDevice lockForConfiguration:&amp;error];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (isLocked &amp;&amp; error == <span class="literal">nil</span>) &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">self</span>.videoDevice.activeFormat.videoSupportedFrameRateRanges)&#123;</span><br><span class="line">        [<span class="keyword">self</span>.videoDevice setActiveVideoMinFrameDuration:<span class="built_in">CMTimeMake</span>(<span class="number">1</span>, fps)];</span><br><span class="line">        [<span class="keyword">self</span>.videoDevice setActiveVideoMaxFrameDuration:<span class="built_in">CMTimeMake</span>(<span class="number">1</span>, fps)];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    [<span class="keyword">self</span>.videoDevice unlockForConfiguration];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="其他设置"><a href="#其他设置" class="headerlink" title="其他设置"></a>其他设置</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//输出设置</span></span><br><span class="line"><span class="keyword">self</span>.videoDataOutput = [[<span class="built_in">AVCaptureVideoDataOutput</span> alloc] init];</span><br><span class="line"></span><br><span class="line"><span class="comment">//kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange 表示原始数据的格式为YUV420</span></span><br><span class="line"><span class="built_in">NSDictionary</span> *settings = [[<span class="built_in">NSDictionary</span> alloc] initWithObjectsAndKeys:[<span class="built_in">NSNumber</span> numberWithUnsignedInt:kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange], kCVPixelBufferPixelFormatTypeKey, <span class="literal">nil</span>];</span><br><span class="line"><span class="keyword">self</span>.videoDataOutput.videoSettings = settings;</span><br><span class="line"></span><br><span class="line"><span class="comment">//保证不会在结束录制时卡顿，丢弃最后的视频帧</span></span><br><span class="line"><span class="keyword">self</span>.videoDataOutput.alwaysDiscardsLateVideoFrames = <span class="literal">YES</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建输出处理队列</span></span><br><span class="line">_videoQueue = dispatch_queue_create(<span class="string">"VideoQueue"</span>, DISPATCH_QUEUE_SERIAL);</span><br><span class="line"></span><br><span class="line"><span class="comment">//指定输出监听代理及队列</span></span><br><span class="line">[<span class="keyword">self</span>.videoDataOutput setSampleBufferDelegate:<span class="keyword">self</span> queue:_videoQueue];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>([<span class="keyword">self</span>.session canAddOutput:<span class="keyword">self</span>.videoDataOutput])&#123;</span><br><span class="line">    [<span class="keyword">self</span>.session addOutput:<span class="keyword">self</span>.videoDataOutput];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取输出连接</span></span><br><span class="line"><span class="keyword">self</span>.videoConnection = [<span class="keyword">self</span>.videoDataOutput connectionWithMediaType:<span class="built_in">AVMediaTypeVideo</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//设置输出图像的方向</span></span><br><span class="line"><span class="keyword">self</span>.videoConnection.videoOrientation = <span class="built_in">AVCaptureVideoOrientationPortrait</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="代理方法处理采集到的画面"><a href="#代理方法处理采集到的画面" class="headerlink" title="代理方法处理采集到的画面"></a>代理方法处理采集到的画面</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#pragma mark - AVCaptureVideoDataOutputSampleBufferDelegate </span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> CMSampleBufferRef: 帧缓存数据，描述当前帧信息</span></span><br><span class="line"><span class="comment"> CMSampleBufferGetXXX : 获取帧缓存信息</span></span><br><span class="line"><span class="comment"> CMSampleBufferGetDuration : 获取当前帧播放时间</span></span><br><span class="line"><span class="comment"> CMSampleBufferGetImageBuffer : 获取当前帧图片信息</span></span><br><span class="line"><span class="comment"> */</span> </span><br><span class="line"> <span class="comment">// 获取帧数据 </span></span><br><span class="line"> - (<span class="keyword">void</span>)captureOutput:(<span class="built_in">AVCaptureOutput</span> *)output didOutputSampleBuffer:(<span class="built_in">CMSampleBufferRef</span>)sampleBuffer fromConnection:(<span class="built_in">AVCaptureConnection</span> *)connection &#123; </span><br><span class="line"></span><br><span class="line">     <span class="comment">// captureSession 会话如果没有强引用，这里不会得到执行 </span></span><br><span class="line">     <span class="built_in">NSLog</span>(<span class="string">@"----- sampleBuffer ----- %@"</span>, sampleBuffer); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/lincsdnnet/article/details/78255773" target="_blank" rel="noopener">《iOS - 视频采集详解》</a><br><a href="https://developer.apple.com/library/archive/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/04_MediaCapture.html#//apple_ref/doc/uid/TP40010188-CH5-SW2" target="_blank" rel="noopener">《Still and Video Media Capture》</a></p>
+
+    </div>
+
+    <div class="post-footer">   
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="zealforbeing.github.io" target="_blank">Z</a>
+            
+        </div>
+        <div>
+            
+        </div>  
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2018/04/18/iOS/视音频/视音频开发-YUV420P/" class="next-post btn btn-default">下一篇<i class="fa fa-angle-right fa-fw"></i></a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	<script type="text/javascript" src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: "Thu Nov 29 2018 14:33:32 GMT+0800",
+        owner:"zealforbeing",
+        repo:"zealforbeing.github.io",
+        oauth: {
+          client_id:"2981e8a381b59e329bcb",
+          client_secret:"7f283c04d615c715490952b394ba7400fb91f88f"
+        },
+        perPage:"10",
+    });
+    gitment.render('comments');
+</script>
+
+    </div>
+
+
+
+
+
+                </main>
+                
+    <aside class="col-md-4 sidebar">
+        
+        
+    <div class="widget">    
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢?">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+        
+        
+    <div class="widget">
+        <h3 class="title">分类</h3>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/iOS/"><i class="fa" aria-hidden="true">iOS</i></a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具/"><i class="fa" aria-hidden="true">工具</i></a><span class="category-list-count">1</span></li></ul>
+    </div>
+
+
+        
+        
+    <div class="widget">
+      <h3 class="title">归档</h3>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/"><i class="fa" aria-hidden="true">十一月 2018</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/"><i class="fa" aria-hidden="true">四月 2018</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/"><i class="fa" aria-hidden="true">三月 2018</i></a><span class="archive-list-count">2</span></li></ul>
+    </div>
+
+
+        
+        
+  <div class="widget">
+    <h3 class="title">标签云</h3>
+    <div class="content tag-cloud">
+        <a href="/tags/Nodejs/" style="font-size: 10px;">Nodejs</a> <a href="/tags/iOS/" style="font-size: 10px;">iOS</a> <a href="/tags/macOS/" style="font-size: 10px;">macOS</a> <a href="/tags/视音频/" style="font-size: 20px;">视音频</a>
+    </div>
+  </div>
+
+
+        
+        
+    <div class="widget">
+        <h3 class="title">友链</h3>
+        <div class="content friends-link">
+        
+            <a href="https://zealforbeing.github.io" class="fa" target="_blank">个人博客</a>
+        
+        </div>
+    </div>
+
+
+        
+    </aside>
+
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12"> 
+                <span>Copyright &copy; 2017
+                </span> | 
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> | 
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+	<script src="/js/search.js?rev=@@hash"></script>
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+
+</body>
+</html>
